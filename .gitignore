@@ -1,0 +1,10 @@
+# Don't track fasta, fastq or *gz files
+*.fasta
+*.fastq
+*.gz
+
+# Don't track any files in "data" or "test"
+data/**
+
+# misc
+*~
