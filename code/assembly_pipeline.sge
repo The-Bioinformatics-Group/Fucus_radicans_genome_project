@@ -5,8 +5,10 @@
 #$ -q node0
 #$ -S /bin/bash
 
+export TMPDIR=/state/partition2/tmp
+
 time clc_assembler --cpus 16 -o /nobackup/data11/Fucus_radicans_genome_project/test/20150915/Fucus_radicans_20150915_novo.fa -p fb ss 100 450 -q -i 7_150716_AC6T07ANXX_P1980_101_1.fastq 7_150716_AC6T07ANXX_P1980_101_2.fastq 2>> time.txt
 
-time clc_mapper --cpus 16 -o /nobackup/data11/Fucus_radicans_genome_project/test/20150915/Fucus_radicans_20150915_ref.cas -p fb ss 100 450 -q -i 7_150716_AC6T07ANXX_P1980_101_1.FXT.CA.FQF.Pair.fastq 7_150716_AC6T07ANXX_P1980_101_2.FXT.CA.FQF.Pair.fastq -p no -q -d Fucus_radicans_20150915_novo.fa 2>> time.txt
+time clc_mapper --cpus 16 -o /nobackup/data11/Fucus_radicans_genome_project/test/20150915/Fucus_radicans_20150915_ref.cas -p fb ss 100 450 -q -i 7_150716_AC6T07ANXX_P1980_101_1.FXT.CA.FQF.Pair.fastq 7_150716_AC6T07ANXX_P1980_101_2.FXT.CA.FQF.Pair.fastq -d Fucus_radicans_20150915_novo.fa 2>> time.txt
 
 time clc_mapping_info -c -n Fucus_radicans_20150915_ref.cas 2>> time.txt
