@@ -14,7 +14,7 @@ FILE2=/state/partition2/mtop/Fucus_data/Fucus_radicans/A.Blomberg_15_06/best_pra
 
 export TMPDIR=/state/partition2/tmp
 
-time clc_assembler --cpus 16 -o $ASSEMBLY -p fb ss 100 450 -q -i $FILE1 $FILE2 2>> time.txt
+time clc_assembler -v --cpus 16 -o $ASSEMBLY -p fb ss 100 450 -q -i $FILE1 $FILE2 2>> time.txt
 
 time clc_mapper --cpus 16 -o $MAPPING -p fb ss 100 450 -q -i $FILE1 $FILE2 -d $ASSEMBLY 2>> time.txt
 
