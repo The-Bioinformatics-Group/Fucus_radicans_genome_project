@@ -10,15 +10,16 @@ ASSEMBLY=/nobackup/data11/Fucus_vesiculosus_genome_project/test/20150915/$PREFIX
 MAPPING=/state/partition2/tmp/$PREFIX_ref.cas
 FILE1=/state/partition2/mtop/Fucus_data/Fucus_radicans/A.Blomberg_15_06/best_practice_qc/P1980_101/fastq_trimmed/7_150716_AC6T07ANXX_P1980_101_1.fastq
 FILE2=/state/partition2/mtop/Fucus_data/Fucus_radicans/A.Blomberg_15_06/best_practice_qc/P1980_101/fastq_trimmed/7_150716_AC6T07ANXX_P1980_101_2.fastq
-
+LOG=$PREFIX.log
+ERR=$PREFIX.err.log
 
 export TMPDIR=/state/partition2/tmp
 
-time clc_assembler --cpus 16 -o $ASSEMBLY -p fb ss 100 450 -q -i $FILE1 $FILE2 2>> time.txt
+time clc_assembler -v --cpus 16 -o $ASSEMBLY -p fb ss 100 450 -q -i $FILE1 $FILE2 >> $LOG 2>> $ERR
 
-time clc_mapper --cpus 16 -o $MAPPING -p fb ss 100 450 -q -i $FILE1 $FILE2 -d $ASSEMBLY 2>> time.txt
+time clc_mapper --cpus 16 -o $MAPPING -p fb ss 100 450 -q -i $FILE1 $FILE2 -d $ASSEMBLY >> $LOG 2>> $ERR
 
-clc_mapping_info -c -n $MAPPING 2>> time.txt
+clc_mapping_info -c -n $MAPPING 
 
 clc_sequence_info -l -k -n $ASSEMBLY > $PREFIX_seqInfo.txt
 clc_sequence_info -l -k -n -c 1000 $ASSEMBLY > $PREFIX_seqInfo-1000.txt
